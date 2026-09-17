@@ -470,6 +470,26 @@ img { display: block; max-width: 100%; }
 .drw__hint { font-size: 12px; color: var(--ink-45); margin: 0; }
 .drw--filters .facet__head { padding: 16px 0; }
 
+/* Phone: the cart is a bottom sheet — the page stays visible above it, and the
+   footer (total + «Оформить заказ» + «Продолжить покупки») is always on screen. */
+@media (max-width: 760px) {
+  .drw:not(.drw--filters) .drw__panel {
+    top: auto; left: 0; right: 0; width: 100%;
+    height: auto; max-height: 85svh;
+    transform: translateY(100%);
+  }
+  .drw:not(.drw--filters).is-open .drw__panel { transform: none; }
+  .drw:not(.drw--filters) .drw__head { padding: 14px 12px 14px 16px; }
+  .drw:not(.drw--filters) .drw__head::before {
+    content: ""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 4px; background: var(--line);
+  }
+  .drw:not(.drw--filters) .drw__panel { position: absolute; }
+  .drw:not(.drw--filters) .drw__head { position: relative; }
+  .drw:not(.drw--filters) .drw__body { padding: 4px 16px; }
+  .drw:not(.drw--filters) .drw__foot { padding: 14px 16px calc(14px + env(safe-area-inset-bottom)); }
+}
+
 .cline { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .cline__img { width: 72px; aspect-ratio: 3 / 4; object-fit: cover; background: var(--paper-2); flex: none; }
 .cline__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
